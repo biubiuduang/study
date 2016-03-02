@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>滚动条高度触发事件</title>
+    <script type="text/javascript" src="../jquery-1.7.2.min.js"></script>
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            margin:3000px 0;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<script type="text/javascript">
+    window.onload = function(){
+        var offOn = true;
+        var onOff = true;
+        var timed;
+
+        $(window).scroll(function(){
+            console.log($(window).scrollTop());
+            if(offOn){
+                setTimeout(startMove(),500);
+            }
+        });
+
+        function startMove(){
+            if($(window).scrollTop() > 2500 && $(window).scrollTop()<3500 ){
+                offOn = false;
+                var onOff;
+                var oDiv = document.getElementById("div1");
+                var speed = 0;
+                timed = setInterval(function(){
+                    if(speed == 1000){
+                        onOff = false;
+                    }else if(speed == 0){
+                        onOff = true;
+                    }
+                    if(onOff){
+                        speed += 10;
+                    }else{
+                        speed -= 10;
+                    }
+                    oDiv.style.marginLeft = speed +"px";
+                },50);
+            }
+        }
+    }
+</script>
+</body>
+</html>

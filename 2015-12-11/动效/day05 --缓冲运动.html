@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>速度运动</title>
+    <style>
+        body{
+            margin:0;
+            padding: 0;
+            text-align: center;
+        }
+        #div1{
+            width:1000px;
+            height: 300px;
+            background-color: red;
+            position: relative;
+            left: -1000px;
+            top: 0;
+        }
+        #div2{
+            text-align: center;
+            width: 30px;
+            height: 50px;
+            font-size: 18px;
+            overflow: hidden;
+            word-break: break-all;
+            position: absolute;
+            left: 1000px;
+            bottom: 125px;
+            background-color: green;
+            cursor:pointer;
+        }
+    </style>
+    <script type="text/javascript" src="../jquery-1.7.2.min.js" ></script>
+</head>
+<body>
+<!-- 匀速运动实例一 -->
+<div id="div1">
+    <div id="div2">分享</div>
+</div>
+
+<script type="text/javascript">
+    window.onload = function(){
+        var oDiv1 = document.getElementById("div1");
+        oDiv1.onmouseover = function(){
+            startMove(0);
+        };
+        oDiv1.onmouseout = function(){
+            startMove(-1000);
+        };
+    };
+
+    var timed;
+    function startMove(i){
+        clearInterval(timed);
+        var oDiv1 = document.getElementById("div1");
+        timed = setInterval(function(){
+            //var speed = 0;
+            var speed = (i - oDiv1.offsetLeft)/10;
+            speed = speed>0?Math.ceil(speed):Math.floor(speed);
+
+            if(oDiv1.offsetLeft == i){
+                clearTimeout(timed);
+            }else{
+                oDiv1.style.left = oDiv1.offsetLeft + speed + "px";
+            }
+        },40);
+    }
+</script>
+</body>
+</html>

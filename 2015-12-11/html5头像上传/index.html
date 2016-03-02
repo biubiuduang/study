@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jQuery头像裁剪插件cropbox</title>
+
+<link rel="stylesheet" href="css/personalCenter.css" type="text/css" />
+
+</head>
+<body>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/cropbox.js"></script>
+<div id="bg"></div>
+<div class="container">
+    <h2>头像设置 <a class="close">×</a></h2>
+
+    <div class="imageBox">
+        <div class="thumbBox"></div>
+        <div class="spinner" style="display: none">Loading...</div>
+    </div>
+
+    <div class="cropped">
+        <img src="images/avatar.png" /> <!--初始头像-->
+    </div>
+    <div class="submit">
+        <p class="crop-err">错误提示</p>
+        <input type="button" value="确认上传"/>
+    </div>
+
+    <div class="action">
+        <input type="file" id="file">
+        <input type="button" id="btnZoomIn" value="放大" >
+        <input type="button" id="btnZoomOut" value="缩小">
+        <input type="button" id="btnCrop" value="点击预览" >
+    </div>
+</div>
+
+</body>
+</html>

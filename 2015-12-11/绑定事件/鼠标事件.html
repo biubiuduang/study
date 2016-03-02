@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>鼠标事件</title>
+    <style>
+        .one{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            text-align: center;
+        }
+        .two{
+            width: 50px;
+            height: 50px;
+            background-color: green;
+        }
+    </style>
+    <script type="text/javascript" src="../../jquery-1.7.2.min.js"></script>
+</head>
+<body>
+<div class="down">.mousedown()事件</div>
+<div class="one">
+    <div class="two"></div>
+</div>
+<p class="hint">我是提示信息</p>
+<script type="text/javascript">
+    $().ready(function(){
+        /**
+        * mousedown() 事件
+        * */
+        $(".down").mousedown(function(){
+            $(".hint").html("mousedown与click事件不同，mousedown事件仅需要按键按下即可执行，而不需要松开。")
+        });
+
+        /**
+         * mouseenter() 与 mouseover()
+         *
+         * */
+        $(".one").mouseenter(function(){
+
+        })
+     })
+</script>
+</body>
+</html>

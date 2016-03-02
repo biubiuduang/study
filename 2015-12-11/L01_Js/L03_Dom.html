@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dom对象</title>
+</head>
+<body>
+<h3>dom操作HTML</h3>
+<a href="http://www.baidu.com" id="aId" target="_blank">链接到百度</a>
+<button id="btn1">修改A的链接地址</button>
+<script>
+    function $(id){
+        return document.getElementById(id);
+    }
+    document.write("hello");
+    function demo(msg){
+        $("aId").innerHTML = "链接到超多维";
+        $("aId").href = "http://www.superd3d.com";
+    }
+    $("btn1").onclick = function(e){
+        alert(e.target);
+    };
+
+</script>
+</body>
+</html>

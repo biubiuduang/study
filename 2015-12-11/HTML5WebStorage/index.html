@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>存储数据</title>
+    <script type="text/javascript" src="index.js"></script>
+</head>
+<body>
+    <div>
+        <h1>sessionStorage(临时存储)</h1>
+        <p id="msg"></p>
+        <input type="text" id="text"/>
+        <input type="button" value="保存数据" onclick="saveStorage('text')"/>
+        <input type="button" value="读取数据" onclick="loadStorage('msg')"/>
+    </div>
+    <div>
+        <h2>localStorage(本地存储)</h2>
+        <p id="localMsg"></p>
+        <input type="text" id="localText"/>
+        <input type="button" value="本地保存数据" onclick="localSaveStorage('localText')"/>
+        <input type="button" value="读取本地数据" onclick="loadLocalStorage('localMsg')"/>
+    </div>
+</body>
+</html>

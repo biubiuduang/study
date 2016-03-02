@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div>demo(a,b) ==<span id="demo"></span></div>
+    <script>
+        function $(id){
+            return document.getElementById(id);
+        }
+        function demo(a,b){
+            return (a+b);
+        }
+        $("demo").innerHTML = demo(10,5);
+
+        function demo2(){
+            var a = 1;
+            var b = 2;
+            var c = a + b;
+            return c;
+        }
+        console.debug(demo2());
+
+        var n = 10;
+        function demo3(){
+            n = 20;
+            return n;
+        }
+        demo3();
+        console.debug("n = " + n);
+
+        var x = 1;
+        console.debug(x);
+    </script>
+</body>
+</html>

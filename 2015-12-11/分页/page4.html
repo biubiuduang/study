@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>分页JS代码</title>
+    <style type="text/css">
+        .paging {
+            padding: 40px 0;
+            text-align: center;
+        }
+        .paging a {
+            display: inline-block;
+            padding: 5px 10px;
+            border: 1px solid #e8e8e8;
+            color: #666666;
+            font-size: 0.875em;
+            margin: 0 2px;
+            text-decoration: none;
+        }
+        .paging a.link {
+            background-color: #0070b8;
+            color: #ffffff;
+        }
+        .paging a.unclick,.paging a.unclick:hover{background:none;border:1px solid #eee;color:#999;cursor:default;}
+    </style>
+    <script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+</head>
+<body>
+
+<div class="paging" id="paging">
+    <a href="#">1</a>
+    <a href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">4</a>
+    <a href="#">5</a>
+    <a href="#">6</a>
+    <a href="#">7</a>
+    <a href="#">8</a>
+    <a href="#">9</a>
+    <a href="#">10</a>
+    <a href="#">11</a>
+    <a href="#">12</a>
+    <a href="#">13</a>
+    <a href="#">14</a>
+    <a href="#">15</a>
+    <a href="#">16</a>
+</div>
+</body>
+<script type="text/javascript">
+    //container 容器，sum 总页数， pagingindex 当前页数
+
+    var setPaging = function (container,sum,pagingindex){
+        var container = container;
+        var sum = sum-1;
+        var pagingindex = pagingindex;
+
+        //总页数少于10 全部显示，总页数大于10 显示前 3 后 3 中 3 其余....
+        if(sum <= 10){
+            for(var i = 0; i < sum-1; i++){
+                $(container + " a:eq("+ i +")").show();
+            }
+        }else{
+            //当前页小于4
+            if(pagingindex < 4){
+                $(container + " a:eq(3)").after("....");
+                for(var i = 4; i < sum; i++){
+                    $(container + " a:eq("+ i +")").hide();
+                }
+            }
+            //当前页后4页
+            else if(pagingindex>sum-2){
+                $(container + " a:eq(0)").after("....");
+                for(var i = 1;i < sum-3;i++){
+                    $(container + " a:eq("+ i +")").hide();
+                }
+            }
+            //当前页为中间
+            else{
+                $(container + " a:eq(1)").after("....");
+                for(var i = 1; i < pagingindex-2; i++){
+                    $(container + " a:eq("+ i +")").hide();
+                }
+                for(var i = pagingindex+1; i < sum;i++){
+                    $(container + " a:eq("+ i +")").hide();
+                }
+                $(container + " a:eq("+ sum +")").before("....");
+            }
+        }
+    };
+
+    $(function(){
+        setPaging(".paging",16,13);
+    })
+</script>
+</html>

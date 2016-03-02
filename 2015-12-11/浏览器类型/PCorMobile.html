@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+    <title>用户界面</title>
+    <script type="text/javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.js" ></script>
+</head>
+<body>
+<script>
+    $().ready(function(){
+        if(IsPC()){
+            alert("PC");
+        }else{
+            alert("mobile");
+        }
+    });
+
+    function IsPC()
+    {
+        var userAgentInfo = navigator.userAgent;
+        var Agents = new Array("Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod");
+        var flag = true;
+        for (var v = 0; v < Agents.length; v++) {
+            if (userAgentInfo.indexOf(Agents[v]) > 0) { flag = false; break; }
+        }
+        return flag;
+    }
+</script>
+</body>
+</html>

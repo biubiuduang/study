@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+
+    <title>appframework</title>
+    <meta content=”width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0″ name=”viewport” />
+    <meta content=”yes” name=”apple-mobile-web-app-capable” />
+
+    <script type="text/javascript" src="appframework.js"></script>
+    <script type="text/javascript" src="ui/appframework.ui.min.js"></script>
+
+    <!-- 常用插件 -->
+    <script type="text/javascript" src="plugins/af.actionsheet.js"></script>
+    <script type="text/javascript" src="plugins/af.popup.js"></script>
+
+    <script type="text/javascript" charset="utf-8" src="./plugins/af.css3animate.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./plugins/af.passwordBox.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./plugins/af.scroller.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./plugins/af.selectBox.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./plugins/af.touchEvents.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./plugins/af.touchLayer.js"></script>
+
+    <script type="text/javascript" charset="utf-8" src="./ui/transitions/fade.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./ui/transitions/flip.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./ui/transitions/pop.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./ui/transitions/slide.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./ui/transitions/slideDown.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./ui/transitions/slideUp.js"></script>
+
+    <script type="text/javascript" charset="utf-8" src="./plugins/af.slidemenu.js"></script>
+
+    <link href="css/icons.css" type="text/css" rel="stylesheet" />
+    <link href="css/af.ui.css" type="text/css" rel="stylesheet" />
+    <link href="plugins/css/af.actionsheet.css" type="text/css" rel="stylesheet" />
+    <style>
+        .red{
+            background-color: red;
+            color:#ffffff;
+        }
+    </style>
+</head>
+<body>
+<div id="afui">
+    <div id="content">
+        <!-- 首页 -->
+       <div id="home" title="首页" class="panel" selected="true" data-tab="footer_home" data-footer="custom_footer">
+
+           这里是首页。。。。。。
+           <ul class="list">
+               <li class="icon picture" onclick="showPopup1();">弹出框1</li>
+               <li class="icon new" onclick="showPopup2();">弹出框2</li>
+               <li onclick="showPopup3();">弹出框3</li>
+           </ul>
+
+       </div>
+
+        <!-- 关于我们 -->
+        <div id="about" title="关于我们" class="panel" data-tab="footer_about" data-footer="custom_footer" data-nav="about_nav">
+            这里是关于我们。。。。。。
+            <a class="button" onclick="showCustomHtmlSheet()">showCustomHtmlSheet()</a>
+            <a class="button" onclick="showCustomJsonSheet()">showCustomJsonSheet()</a>
+        </div>
+
+        <!-- ajax -->
+        <div id="ajax" title="Ajax" class="panel" data-tab="footer_ajax" data-footer="custom_footer"  data-load="show">    <!-- data-load 执行show() --> <!-- data-defer="ajax.html" -->
+            <p class="ajax1">1111111111111</p>
+        </div>
+
+        <!-- header footer -->
+        <header id="custom_header">
+            <h1>welcome</h1>
+            <a class="button icon home" style="float: left;"></a>
+        </header>
+        <footer id="custom_footer">
+            <a id="footer_home" href="#home" class="icon home">首页</a>
+            <a id="footer_about" href="#about" class="icon info" data-transition="fade">关于我们</a>
+            <a id="footer_ajax" href="#ajax" class="icon info" data-refresh-ajax="true">Ajax</a>
+        </footer>
+
+        <!-- SideMenu -->
+        <nav id="home_nav">
+            <div class="title">首页</div>
+            <ul class="list">
+                <li><a  class="icon home mini" href="#home">首页</a></li>
+                <li><a class="icon info mini" href="#about">关于我们</a></li>
+            </ul>
+        </nav>
+
+        <nav id="about_nav">
+            <div class="title">首页</div>
+            <ul class="list">
+                <li><a class="icon home mini" href="#home">首页</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script type="text/javascript" src="../jquery-1.7.2.min.js" ></script>
+<script type="text/javascript">
+    $().ready(function(){
+        //clientX   offset()
+        $("#coordiv").mousemove(function(e){
+            var offset = $(this).offset();
+            var x = (e.clientX - offset.left);
+            var y = (e.clientY - offset.top);
+            $("#xycoordinates").html("坐标为:（" + x +","+ y +")");
+        });
+        //pageX
+        $("#pagediv").mousemove(function(e){
+            $("#xypage").html("X:" + e.pageX +","+"Y:"+ e.pageY);
+        });
+    });
+
+
+</script>
+<body style="margin:0px;padding-left: 2000px;">
+
+<p>把鼠标悬停在下面的矩形上可以看到坐标：</p>
+
+<div id="coordiv" style="width:199px;height:99px;border:1px solid #c3c3c3;" ></div>
+<div id="xycoordinates"></div>
+<div id="pagediv" style="width:199px;height: 99px;border:1px solid #ff0000;"></div>
+<div id="xypage"></div>
+</body>
+</html>

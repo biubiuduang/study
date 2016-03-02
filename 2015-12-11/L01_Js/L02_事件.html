@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body onload="loadDemo()">
+<form action="">
+    <p>onchange 事件：</p>
+    <input type="text" onchange="changeDemo(this)"/>
+    <p>onselect 事件：</p>
+    <input type="text" onselect="selectDemo(this)"/>
+    <p>onfoucs onblur 事件：</p>
+    <input type="text" onfocus="focusDemo(this)" onblur="blurDemo(this)"/>
+</form>
+
+<script>
+    function changeDemo(msg){
+        alert("内容改变了！")
+    }
+    function selectDemo(msg){
+        msg.style.background = "red";
+    }
+    function focusDemo(msg){
+        msg.style.background = "green";
+    }
+    function blurDemo(msg){
+        msg.style.background = "red"
+    }
+    function　loadDemo(){
+        alert("网页加载完毕")
+    }
+</script>
+</body>
+</html>

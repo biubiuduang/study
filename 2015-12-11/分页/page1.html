@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+#div1 a{margin:5px;}
+</style>
+<script>
+window.onload=function(){
+	page({
+		id:'div1',
+		nowNum:7,
+		allNum:10
+		});
+	}
+	function page(opt){
+		if(!opt.id){return false;}
+		
+		var obj=document.getElementById(opt.id);
+		
+		var nowNum=opt.nowNum;
+		
+		var allNum=opt.allNum;
+		
+		if(nowNum>=4 && allNum>=6){
+			 var oa=document.createElement('a');
+			 oa.href="#1";
+			 oa.innerHTML='首页';
+			 obj.appendChild(oa);
+			}
+		if(nowNum>=2){
+			 var oa=document.createElement('a');
+			 oa.href="#"+(nowNum-1);
+			 oa.innerHTML='上一页';
+			 obj.appendChild(oa);
+			}
+			
+			
+			
+		
+		if(allNum<=5){//总页数小于等于5
+			for(var i=1;i<=5;i++){
+			  var oa=document.createElement('a');
+			  oa.href='#'+i;
+			  if(nowNum==i){
+				  oa.innerHTML=i;
+				  }else{
+			        oa.innerHTML='['+i+']';
+					}
+			  obj.appendChild(oa);
+			}
+			}else{//大于5时
+				for(var i=1;i<=5;i++){
+			        var oa=document.createElement('a');
+					
+					if(nowNum==1 || nowNum==2){
+						 oa.href='#'+i;
+						 if(nowNum==i){
+				            oa.innerHTML=i;
+				          }else{
+			                 oa.innerHTML='['+i+']';
+					       }
+						}
+						
+					else if((allNum-nowNum)==0 || (allNum-nowNum)==1){
+						 oa.href='#'+(nowNum-5+i);
+						 if((allNum-nowNum)==0 && i==5){
+				           oa.innerHTML='['+(nowNum-5+i)+']';
+				         }
+						 else if((allNum-nowNum)==1 && i==4){
+							 oa.innerHTML='['+(nowNum-5+i)+']';
+							 }
+						 else{
+			              oa.innerHTML='['+(nowNum-5+i)+']';
+					}
+						 
+						}	
+					else{
+					oa.href='#'+(nowNum-3+i);
+					if(i==3){
+				        oa.innerHTML=(nowNum-3+i);
+				     }else{
+			           oa.innerHTML='['+(nowNum-3+i)+']';
+					}
+			        
+					}
+					obj.appendChild(oa);}
+					
+				 
+				}
+			
+			if((allNum-nowNum)>=1){
+				  var oa=document.createElement('a');
+			      oa.href="#"+(nowNum+1);
+			      oa.innerHTML='下一页';
+			      obj.appendChild(oa);
+				}
+			if((allNum-nowNum)>=3 && allNum>=6){
+				  var oa=document.createElement('a');
+			      oa.href="#"+allNum;
+			      oa.innerHTML='尾页';
+			      obj.appendChild(oa);
+				}	
+				
+				//点击操作
+				var aA=obj.getElementsByTagName('a');
+				for(var i=0;i<aA.length;i++){
+					aA[i].onclick=function(){
+				    var nowNum=parseInt(this.getAttribute('href').substring(1));
+					obj.innerHTML='';
+					page({
+						id:opt.id,
+		                nowNum:nowNum,
+		                allNum:allNum
+						
+						});
+						}
+					}
+		}
+</script>
+</head>
+
+<body>
+<div id="div1">
+
+</div>
+</body>
+</html>

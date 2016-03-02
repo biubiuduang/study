@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>自执行函数</title>
+    <script type="text/javascript" src="../jquery-1.7.2.min.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+    $().ready(function(){
+        (function(a,b,c){
+            alert(a + ","+b+","+c);
+        })(1,2,3);
+    })
+</script>
+</body>
+</html>

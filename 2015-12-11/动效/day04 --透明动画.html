@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>透明动画</title>
+    <style>
+        #div1{
+            width: 300px;
+            height: 300px;
+            background-color: #f00;
+            opacity: 0.3;
+            filter:alpha(opacity:30);
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+
+<script type="text/javascript">
+    window.onload = function(){
+        var oDiv = document.getElementById("div1");
+        oDiv.onmouseover = function(){
+            startMove(100);
+        };
+        oDiv.onmouseout = function(){
+            startMove(30);
+        }
+    };
+
+    var timed;
+    var alpha = 30;
+    var speed;
+    function startMove(i){
+        clearInterval(timed);
+        var oDiv = document.getElementById("div1");
+        timed = setInterval(function(){
+            if(i<alpha){
+                speed = -10;
+            }else{
+                speed = 10;
+            }
+            if(i == alpha){
+                clearInterval(timed);
+            }else{
+                alpha+=speed;
+                oDiv.style.filter = 'alpha(opacity:'+ alpha + ')';
+                oDiv.style.opacity = alpha/100;
+                console.log(alpha);
+            }
+        },100);
+    }
+
+</script>
+</body>
+</html>

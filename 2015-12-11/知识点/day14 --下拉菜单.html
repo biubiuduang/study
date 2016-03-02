@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>下拉菜单</title>
+    <script type="text/javascript" src="../jquery-1.7.2.min.js"></script>
+</head>
+<body>
+<select>
+    <option value="北京">北京</option>
+    <option value="上海">上海</option>
+    <option value="天津">天津</option>
+</select>
+<script type="text/javascript">
+    $().ready(function(){
+        $("select option").click(function(){
+            alert($(this).val());
+        })
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>get index</title>
+    <script type="text/javascript" src="../../jquery-1.7.2.min.js" ></script>
+</head>
+<body>
+<ul>
+    <p>ppppppppp</p>
+    <li>11111</li>
+    <li>22222</li>
+    <li>33333</li>
+    <span>444444</span>
+</ul>
+<a href="index.html?data=1">aaaaaaaaaa</a>
+<script type="text/javascript">
+    $().ready(function(){
+        console.debug($("ul li").get(0));
+        console.debug($("ul li:eq(1)").html());
+        console.debug($("ul span").index());
+
+        $("p").data("test",{"one":"1","two":"2"});
+        console.debug($("p").data("test").two);
+
+            if(window.location.search == "?data=1"){
+                console.debug(1111111111);
+            }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>jQuery Ajax</title>
+    <script type="text/javascript" src="../../jquery-1.7.2.min.js" ></script>
+</head>
+<body>
+<div id="oDiv"></div>
+<input class="btn1" type="button" value="jqueryLoad" />
+<input class="btn2" type="button" value="jqueryGet" />
+<input class="btn3" type="button" value="jqueryPost" />
+<input class="btn4" type="button" value="jqueryAjax" />
+
+
+<script type="text/javascript">
+$().ready(function(){
+    /**
+     * load()  载入远程HTML 文件代码 并插入到DOM中
+     * 参数：
+     * url String 待装入的Html 网页网址。
+     * data（可选）Map,String 发送到服务器的 key/value 数据。
+     * callback （可选）载入成功后的回调函数
+     * */
+
+     $(".btn1").click(function(){
+        $("#oDiv").load("load.html #hTitle","data=data",function(){
+            console.debug("加载成功....");
+            console.debug(arguments);
+        })
+    });
+
+    /**
+     * $.get()  通过远程HTTP  GET 请求载入信息.
+     * url 待载入信息的URL地址
+     * data 待发送的 Key/Value 参数
+     * callback 载入成功后的回调函数
+     * type 返回内容的格式: xml,html,json,script,text
+     * */
+
+     $(".btn2").click(function(){
+        $.get("data.json",{name:"whb",id:"1"},function(msg){
+            console.debug(eval(arguments));
+            var backVal = msg.Status;
+            if(backVal == 0){
+                $("#oDiv").html("返回值为 0,信息正常");
+            }
+            else if(backVal == 1){
+                $("#oDiv").html("返回值为 1,信息不正常");
+            }
+            else{
+                $("#oDiv").html("未知返回值");
+            }
+        })
+    });
+
+    /**
+     * $.post()  通过远程HTTP  POST 请求载入信息.
+     * url 待载入信息的URL地址
+     * data 待发送的 Key/Value 参数
+     * callback 载入成功后的回调函数
+     * type 返回内容的格式: xml,html,json,script,text
+     * */
+
+    $(".btn3").click(function(){
+        $.post("data.json","data=data",function(msg){
+            $("#oDiv").html("返回的ID为："+msg.id);
+        })
+    });
+
+    /**
+     * $.ajax()
+     * */
+
+    $(".btn4").click(function(){
+        $.ajax({
+            url : "user.json",
+            dataType : "json",
+            success : function(data){
+                var dataLen = data.length;
+                var content = "";
+                for(var i = 0;i<dataLen;i++){
+                    content += "<div> ID = " + data[i].id +"姓名是："+ data[i].name +"</div>"
+                }
+                $("#oDiv").html(content);
+            }
+        })
+    })
+
+
+  });
+</script>
+</body>
+</html>

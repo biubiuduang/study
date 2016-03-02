@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>速度运动</title>
+    <style>
+        body{
+            margin:0;
+            padding: 0;
+            text-align: center;
+        }
+        #div1{
+            width:200px;
+            height: 300px;
+            background-color: red;
+            position: relative;
+            left: -200px;
+            top: 0;
+        }
+        #div2{
+            text-align: center;
+            width: 30px;
+            height: 50px;
+            font-size: 18px;
+            overflow: hidden;
+            word-break: break-all;
+            position: absolute;
+            left: 200px;
+            bottom: 125px;
+            background-color: green;
+            cursor:pointer;
+        }
+        #div3{
+            width: 1000px;
+            height: 600px;
+            border:2px solid #FF6B57;
+            margin: 0 auto;
+        }
+        #div4,#div5{
+            width: 30px;
+            height: 30px;
+            border:2px solid #428bca;
+        }
+    </style>
+    <script type="text/javascript" src="../jquery-1.7.2.min.js" ></script>
+</head>
+<body>
+<!-- 匀速运动实例一 -->
+<div id="div1">
+    <div id="div2">分享</div>
+</div>
+
+<!-- 举一反三 -->
+<div id="div3">
+    <div id="div4"></div>
+    <div id="div5"></div>
+</div>
+
+<script type="text/javascript">
+    window.onload = function(){
+        var oDiv1 = document.getElementById("div1");
+        oDiv1.onmouseover = function(){
+            startMove(0);
+        };
+        oDiv1.onmouseout = function(){
+            startMove(-200);
+        };
+
+        animate4("div4",0,100,10,100);
+        $("#div5").animate({
+            marginLeft: "100px"
+        },1000)
+    };
+    var time4;
+    function animate4(id,start,stop,speed,t){
+        clearInterval(time4);
+        var oDiv = document.getElementById(id);
+        var spd= speed;
+        time4 = setInterval(function(){
+            if(spd > stop){
+                clearTimeout(time4);
+            }else{
+                oDiv.style.marginLeft = start + spd + "px";
+            }
+        },t)
+    }
+
+    var timed;
+    function startMove(i){
+        clearInterval(timed);
+        var oDiv1 = document.getElementById("div1");
+        var speed;
+
+        timed = setInterval(function(){
+            if(oDiv1.offsetLeft>i){
+                speed=-10;
+            }else{
+                speed=10;
+            }
+
+            if(oDiv1.offsetLeft == i){
+                clearTimeout(timed);
+            }else{
+                oDiv1.style.left = oDiv1.offsetLeft + speed + "px";
+            }
+        },40);
+    }
+</script>
+</body>
+</html>

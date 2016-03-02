@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计算门票价格</title>
+    <script type="text/javascript" src="../../jquery-1.7.2.min.js"></script>
+</head>
+<body>
+<p>请选择你属于哪类参观者：</p>
+<input type="radio" name="type" value="1">儿童<br/>
+<input type="radio" name="type" value="2">大中小学生<br/>
+<input type="radio" name="type" value="3">离退休人员<br/>
+<input type="radio" name="type" value="4">老年人<br/>
+<input type="radio" name="type" value="5" checked>其他<br/>
+<p>请输入你参观故宫的月份：</p>
+<select>
+    <option value="1">1月</option>
+    <option value="2">2月</option>
+    <option value="3">3月</option>
+    <option value="4">4月</option>
+    <option value="5">5月</option>
+    <option value="6">6月</option>
+    <option value="7">7月</option>
+    <option value="8">8月</option>
+    <option value="9">9月</option>
+    <option value="10">10月</option>
+    <option value="11">11月</option>
+    <option value="12">12月</option>
+</select>
+<br/><br/>
+<button class="btn">查询票价</button>
+<p class="alert"></p>
+<p>实际票价为 <span class="money"></span> 元</p>
+
+<script type="text/javascript">
+    $(function(){
+        $(".btn").click(function(){
+            var typeVal = $("input[type='radio']:checked").val();
+            var selectVal = $("select").val();
+            if( typeVal==1 || typeVal==3){
+                $(".alert").text("1.2以下儿童及离退休人员享受免票政策！");
+                $(".money").text("0");
+            }
+            if( typeVal == 2){
+                $(".alert").text("大中小学生门票20元！");
+                $(".money").text("20");
+            }
+            if( typeVal == 4){
+                $(".alert").text("老年人享受半价优惠！");
+                if(selectVal>=4 && selectVal<=10){
+                    $(".money").text("30");
+                }else{
+                    $(".money").text("20");
+                }
+            }
+            if(typeVal == 5){
+                $(".alert").text("您不享受任何优惠！");
+                if(selectVal>=4 && selectVal<=10){
+                    $(".money").text("60");
+                }else{
+                    $(".money").text("40");
+                }
+            }
+        })
+    })
+</script>
+</body>
+</html>

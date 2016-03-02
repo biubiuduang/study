@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>多物体动画</title>
+</head>
+<style>
+    body,ul{
+        margin: 0;
+        padding: 0;
+    }
+    ul li{
+        list-style: none;
+        width: 300px;
+        height:100px;
+        background-color: #f00;
+        margin: 30px 0;
+    }
+</style>
+<body>
+<ul id="oUl">
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+
+<script>
+    window.onload = function(){
+        var lis = document.getElementsByTagName("li");
+        var len = lis.length;
+        for(var i = 0;i < len;i++){
+            lis[i].onmouseover = function(){
+                startMove(this,1000);
+            };
+            lis[i].onmouseout = function(){
+                startMove(this,300);
+            }
+        }
+    };
+
+    function startMove(obj,para){
+        clearInterval(obj.timed);
+        obj.timed = setInterval(function(){
+            var speed;
+            //匀速运动
+//            if(obj.offsetWidth > para){
+//                speed = -10;
+//            }else{
+//                speed = 10;
+//            }
+            //缓冲运动
+            speed = (para - obj.offsetWidth)/8;
+            speed = speed>0?Math.ceil(speed):Math.floor(speed);
+
+            if(obj.offsetWidth == para){
+                clearInterval(obj.timed);
+            }else{
+                obj.style.width = obj.offsetWidth + speed + "px";
+            }
+        },50)
+    }
+</script>
+</body>
+</html>

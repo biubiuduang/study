@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>定时器</title>
+    <script type="text/javascript" src="../../jquery-1.7.2.min.js"></script>
+</head>
+<body>
+<p class="one"></p>
+<p class="two"></p>
+<script type="text/javascript">
+    $(function(){
+        setTime(2016,4,1,".one");
+        window.setInterval(function(){setTime(2016,4,1,".one")},1000);
+
+        setTime(2016,6,1,".two");
+        window.setInterval(function(){setTime(2016,6,1,".two")},1000);
+
+        var s = new Date(2016,3,5,10,5,2);
+        console.log(s);
+    });
+    function setTime(Year,Month,Day,uid){
+        var str = new Date();
+        var stp = new Date(Year,Month-1,Day);
+        if( stp > str){
+            var leftTime = stp.getTime() - str.getTime();
+            var leftSecond = parseInt(leftTime/1000);
+            var hour = Math.floor(leftSecond/(60*60));
+            var minute = Math.floor((leftSecond - hour*60*60)/60);
+            var second = Math.floor(leftSecond - hour*60*60 - minute*60);
+            if(hour<100){
+                hour = "0"+hour
+            }else if(hour<10){
+                hour = "00" + hour
+            }
+
+            if(minute<10){
+                minute = "0" + minute
+            }
+
+            if(second<10){
+                second = "0" + second;
+            }
+
+            $(uid).text(hour +"：" + minute + "：" + second);
+        }else{
+            $(uid).text("000:00:00");
+        }
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>绑定事件</title>
+    <script type="text/javascript" src="../../jquery-1.7.2.min.js"></script>
+</head>
+<body>
+<div id="oDiv"></div>
+<input class="btn1" type="button" value="bind()"/>
+<input class="btn2" type="button" value="live()"/>
+<div class="box"></div>
+<script type="text/javascript">
+    $().ready(function(){
+        /**
+         * .bind(); 为DOM被选元素添加一个或多个事件处理程序，并规定事件发生时运行的函数。
+         * 优点：同一元素多事件绑定
+         * 缺点：多元素时效率出问题 不能给动态元素绑定事件
+         * */
+        $(".btn1").bind({
+            hover: function () {
+                alert("hover事件");
+            },
+            click: function () {
+                alert("click事件");
+            }
+        });
+
+        /**
+         * .live();
+         * 不再推荐使用
+         * */
+        $(".btn2").live({
+            click : function(){
+                console.debug(".live()不再推荐使用。");
+            }
+        });
+
+        /**
+         * .delegate();
+         * 优点: 同一元素多事件绑定，可以给动态添加元素绑定事件
+         *
+         * */
+        $(".box").html("<p>我是动态添加的</p>").delegate("p","click mouseover mouseout",function(e){
+            var eType = e.type;
+            if(eType == "click"){
+                console.debug("动态添加的元素的click事件！");
+            }
+            if(eType == "mouseover"){
+                console.debug("mouseover事件");
+            }
+            if(eType == "mouseout"){
+                console.debug("mouseout事件");
+            }
+        });
+
+        /**
+         * 其实.bind(), .live(), .delegate()都是通过.on()来实现的，.unbind(), .die(), .undelegate(),也是一样的都是通过.off()来实现的.
+         * */
+//// Bind
+//        $( "#members li a" ).on( "click", function( e ) {} );
+//        $( "#members li a" ).bind( "click", function( e ) {} );
+//
+//// Live
+//        $( document ).on( "click", "#members li a", function( e ) {} );
+//        $( "#members li a" ).live( "click", function( e ) {} );
+//
+//// Delegate
+//        $( "#members" ).on( "click", "li a", function( e ) {} );
+//        $( "#members" ).delegate( "li a", "click", function( e ) {} );
+
+     })
+</script>
+</body>
+</html>

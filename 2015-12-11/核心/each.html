@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>.each()</title>
+    <style>
+        div{
+            width: 50px;
+            height: 50px;
+            float: left;
+            margin-right: 20px;
+            background-color: red;
+        }
+        .click{
+            background-color: green;
+        }
+        p{
+            width: 100%;
+            float: left;
+        }
+    </style>
+    <script type="text/javascript" src="../../jquery-1.7.2.min.js"></script>
+</head>
+<body>
+<span></span>
+<div></div>
+<div></div>
+<div id="stop"></div>
+<div></div>
+<button class="btn_color">改变颜色</button>
+<button class="btn_size">div的个数</button>
+<p>最后一个div为动态添加的div，无法执行each事件</p>
+<script type="text/javascript">
+    $().ready(function(){
+        $("div").each(function(){
+            $(this).click(function(){
+                $(this).toggleClass("click");
+            })
+        });
+        $(".btn_color").click(function(){
+            $("div").each(function(index){
+                var num = Number(index)+1;
+                $(this).css({"backgroundColor":"yellow"});
+                if($(this).is("#stop")){
+                    $("span").html("第"+ num +"个div的id是stop");
+                    return false;
+                }
+            })
+        });
+
+        $(".btn_size").click(function(){
+           $("body").prepend("<div></div>");
+           console.debug($("div").size());
+            console.debug($("div").length);
+            console.debug($("div").height());
+            console.debug($("div").width());
+        });
+
+        $("#stop").append("<span>" + $("p").selector + "</span>");
+
+    })
+</script>
+</body>
+</html></html>
