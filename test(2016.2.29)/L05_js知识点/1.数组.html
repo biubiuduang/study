@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组</title>
+</head>
+<body>
+<script type="text/javascript">
+    window.onload = function(){
+        var nArr = new Array();
+        var nArr2 = ["a","b","c","d"];
+        <!-- 存取数组元素 -->
+        nArr[0] = 1;
+        nArr[1] = 2;
+        nArr[2] = new Array();
+        nArr[2][0] = 3;
+        nArr[0] = 0;
+
+        <!-- 删除数组元素 -->
+//        delete nArr[2];
+
+        <!-- 遍历数组元素 -->
+//        for (var i in nArr){
+//            console.log(nArr[i]);
+//        }
+
+        console.log(nArr.constructor);
+
+        nArr.push([{"a" : 5},7]);
+        console.log(nArr[3][0].a);
+
+        nArr.unshift([1,2,9]);
+        console.log(nArr);
+
+
+        console.log(nArr.concat([1,23,45,66]));
+
+        <!-- 删除最后一个元素 -->
+        nArr2.pop();
+        console.log(nArr2);
+        <!-- 删除第一个元素 -->
+        nArr2.shift();
+        console.log(nArr2);
+
+
+        var nArr3 = ["0","1","2","3","4","5","6"];
+        nArr3.splice(2,2,"a");
+        console.log(nArr3);
+
+        var nArr4 = ["0","1","2","3","4","5","6"];
+        console.log(nArr4.slice(1,5));
+
+        <!-- .reverse() 颠倒数组中的顺序 -->
+        var nArr5 = ["0","3","1","2","4","5","6"];
+        var nArr6 = ["a","b","c","e","f","m","g"];
+
+        console.log(nArr6.toString());
+        console.log(nArr6.toLocaleString());
+        console.log(nArr5.reverse());
+        console.log(nArr6.reverse());
+        <!-- .sort() 正序数组中的顺序 -->
+        console.log(nArr5.sort());
+        console.log(nArr6.sort());
+        console.log(nArr6.join("@"));
+
+
+        console.log(nArr6.every(function(){
+
+        }));
+
+    }
+</script>
+</body>
+</html>

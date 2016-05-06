@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>引用类型</title>
+    <script type="text/javascript" src="../../jquery-1.7.2.min.js"></script>
+</head>
+<body>
+<div id="setTime"></div>
+<script type="text/javascript">
+    function displayInfo(args){
+        var output = "";
+        if(typeof args.name == "string"){
+            output += "Name : " + args.name + "\n";
+        }
+        if(typeof args.age == "number"){
+            output += "Age : " + args.age + "\n";
+        }
+        console.log(output);
+    }
+    displayInfo({
+        name : "Jacky.wang",
+        age : 29
+    });
+    displayInfo({name : "Hello World"});
+
+    var obj_1 = {name : "Hello World", age : "29", sex : "man"};
+    var arr_1 = [0,1,2,3,4,5,6,7];
+    console.log(obj_1["name"] + " " + arr_1.length);
+
+    /**
+     * Array 数组
+     * */
+    console.log("数组");
+    var arr_2 = new Array("Hello");
+    var arr_3 = new Array(12);
+    console.log(arr_2);
+    console.log(arr_3);
+
+    var color = ["blue","red","yellow"];
+    color.length = 2;
+    console.log(color);
+    color.length = 4;
+    console.log(color);
+
+    if(color instanceof Array){
+        console.log("color是数组");
+    }
+    console.log(color.toString());
+    console.log(color.valueOf());
+    console.log(color);
+
+    /**
+     * join();
+     * push("") 删除选定项
+     * shift()  删除第一项
+     * pop()   删除最后一项
+     * */
+    console.log(color.join("!!"));
+    color.push("black");
+    console.log(color);
+    color.shift();     //移除第一项
+    console.log(color);
+    color.pop();       //移除最后一项
+    console.log(color);
+
+    /**
+     * 重新排序
+     * reverse()  颠倒顺序
+     * sort()  升序
+     * */
+    var arr_4 = [0,1,2,5,3,4,18,11,26];
+
+    arr_4.reverse();
+    console.log(arr_4);
+    $.each(arr_4,function(key,val){
+        console.log(key + ":" + val);
+    });
+
+    arr_4.sort();
+    console.log(arr_4);  //[0,1,11,18,2,26,3,4,5];
+
+    $.each(arr_4,function(key,val){
+        console.log(key + ":" + val);
+    });
+
+    /**
+     * concat() 合并多个数组
+     * */
+    var arr_5 = ["one","two","three"];
+    var arr_6 = arr_5.concat("four",["five","six"]);
+    console.log(arr_6);
+
+    var arr_7 = [0,1,2,3,4,5,6,7,8,9];
+    var arr_8 = [0,1,2,3,4,5,6,7,8,9];
+    var arr_9 = [0,1,2,3,4,5,6,7,8,9];
+    var arr_10 = [0,1,2,3,4,5,6,7,8,9];
+    console.log("删除");
+    arr_7.splice(0,2);
+    arr_8.splice(2,3);  //删除从第3位起 3项
+    console.log(arr_7);
+    console.log(arr_8);
+    console.log("插入");
+    arr_9.splice(2,0,10,160,10000);
+    console.log(arr_9);
+    console.log("替换");
+    arr_10.splice(2,1,"2被替换了","被替换的内容");
+    console.log(arr_10);
+
+    /**
+     * indexOf()  查找字符串第一次出现的地方;  -1 表示不包含
+     * */
+    console.log(arr_9.indexOf(3));
+    console.log(arr_10.lastIndexOf("哈哈"));
+
+    var arr_11 = [0,10,20,30,40,50,60,7,8,9];
+    $.each(arr_11,function(index,item,arr){
+        console.log(index + " : " + item + " : " + arr + "\n");
+    });
+
+    var arr_12 = [1,2,3,4,5,4,3,2,1];
+    var filter = arr_12.filter(function(index){
+        return (index > 2);
+    });
+    console.log(filter);
+
+    var map = arr_12.map(function(item,index){
+        return (item*2 + ":" + index*3);
+    });
+    console.log(map);
+
+    /**
+     * Date
+     * */
+    var date_1 = new Date();
+    console.log(date_1);
+    console.log(date_1.getFullYear() + "年" + (date_1.getMonth()+1) +"月"+date_1.getDate() + "日 ; 星期" + date_1.getDay() + " " + date_1.getHours() + ":" + date_1.getMinutes() + ":" + date_1.getSeconds());
+
+    var date_2 = new Date("May 25,2016");
+    console.log(date_2);
+    console.log(date_2.getTime());
+    console.log(date_2.toDateString());
+    console.log(date_2.toTimeString());
+    console.log(date_1.toLocaleDateString());
+    console.log(date_1.toLocaleTimeString());
+    console.log(date_1.toLocaleString());
+    console.log(date_1.toUTCString());
+
+    console.log(navigator.userAgent);
+
+    /**
+     * 倒计时
+     * */
+
+
+    var setTime = setInterval(function(){countDown()},1000);
+
+    function countDown(){
+
+        var newTime = new Date();
+        var stopTime = new Date(2016,5,14,17,55,55);
+        var timeDiff = (stopTime.getTime() - newTime.getTime())/1000;
+        var countHours = Math.floor(timeDiff/(60*60));
+        var countMinutes = Math.floor((timeDiff - countHours*60*60)/60);
+        var countSecond = Math.floor(timeDiff - countHours*60*60 - countMinutes*60);
+        if(countHours == 0 && countMinutes == 0 && countSecond == 0){
+            clearTimeout(setTime);
+        }
+        $("#setTime").html(countHours + ":" + countMinutes +":"+countSecond);
+    }
+
+    console.log(fun_1(30,50));
+
+    function fun_1(num_1,num_2){
+        return (num_1 + num_2);
+    }
+    console.log(fun_1(10,20));
+
+    var fun_2 = [{name:"zhangsan",age : 28},{name : "lisi",age : 30}];
+    console.log(fun_2[1].name + " : " + fun_2[1].age);
+
+    function fun_3(num_3){
+        if(num_3 <= 1){
+            return 1;
+        }else{
+            return num_3 * arguments.callee(num_3 - 1);
+        }
+    }
+    var fun_4 = fun_3;
+    console.log(fun_4(5));
+    console.log(fun_3(5));
+
+    fun_3 = function(){
+        return 0;
+    };
+    console.log(fun_3(5));
+
+    function fun_5(){
+        fun_6();
+    }
+    function fun_6(){
+        console.log(fun_6.caller);
+        console.log(arguments.callee);
+    }
+    fun_5();
+
+    console.log(fun_1.length);
+    console.log(fun_2.length);
+
+    function fun_7(num_1 , num_2){
+        return (num_1 + num_2);
+    }
+
+    function callFun_7(num_1, num_2){
+        return fun_7.apply(this,arguments);
+    }
+
+    console.log(callFun_7(10,20));
+
+    var s_1 = "sometext";
+    var s_2 = s_1.substring(2);
+    console.log(s_2);
+    console.log(s_1.substr(0,3));
+    console.log(s_1.substring(2,5));
+    console.log(s_1.indexOf("xxx"));
+
+    var s_3 = new String("some text");
+    console.log(s_3);
+    console.log(s_3[0]);
+
+    console.log(false instanceof Object);
+    console.log(typeof  1);
+
+    var num_6 = 17;
+    var num_7 = new Number(11);
+    console.log(num_6.toString(2));
+    console.log(num_6.toFixed(10));
+    console.log(num_6 instanceof Number);
+    console.log(num_7 instanceof Number);
+
+    /**
+     * String 类型
+     * */
+
+    var str_1 = "HelloWorld";
+    console.log(str_1.charAt(0) + " : " + str_1.charAt(1));
+    console.log(str_1.charCodeAt(1));           //字符编码
+    console.log(str_1[0]);
+
+    var str_2 = str_1.concat(" 哈哈","这里还可以加,","还可以继续添加string",str_1);
+    console.log(str_2);
+
+    console.log(str_2.substr(3,5));
+    console.log(str_2.substring(3,5));  //不含5
+    console.log(str_2.slice(3,5));
+    console.log(str_2.slice(-11));
+    console.log(str_2.substr(-11));
+    console.log(str_2.substring(-11));
+
+    console.log(str_2.indexOf("o"));
+    console.log(str_2.lastIndexOf("o"));
+
+    var arr_13 = new Array();
+    var arr_14 = str_1.indexOf("o");
+    while(arr_14 > -1){
+        arr_13.push(arr_14);
+        arr_14 = str_1.indexOf("o",arr_14 + 1);
+    }
+    console.log(arr_13);
+
+    var str_3 = " Hello WorLd ";
+    console.log(str_3.trim() + "\n" + str_3);
+
+    console.log(str_3.toLowerCase());
+    console.log(str_3.toUpperCase());
+
+    var txt_1 = "caobaosattfat";
+    var pat = /att/;
+    var mat = txt_1.match(pat);
+    console.log(mat.index);
+    console.log(mat);
+    console.log(txt_1.substring(mat.index+1,(mat.index+4)));
+    console.log(txt_1.search(/os/));
+    console.log(txt_1.search(/osd/));  //没有查到 返回-1;
+
+    var txt_2 = txt_1.replace("at","oid");  //第一个at 替换为 oid
+    console.log(txt_2);
+
+    var txt_3 = txt_1.replace(/at/g,"oid");
+    console.log(txt_3);
+
+    var txt_4 = "cat bat sat fat";
+    var txt_5 = txt_4.replace(/(.at)/g,"word($1)");
+    console.log(txt_5);
+
+    var colorTxt = "red.blue.yellow.black";
+    var colorS1 = colorTxt.split(".");
+    var colorS2 = colorTxt.split(".",2);
+    var colorS3 = colorTxt.split(/[^\.]+/);
+    console.log(colorS1);
+    console.log(colorS2);
+    console.log(colorS3);
+
+    /**
+     * Math
+     * */
+    var max = Math.max(3,6,9,15,1,69,789);
+    var min = Math.min(3,6,9,15,1,69,789);
+    console.log(max);
+    console.log(min);
+
+    var math_1 = Math.floor(Math.random()*100 + 10);
+    console.log(math_1);
+
+    
+</script>
+</body>
+</html>

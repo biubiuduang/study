@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作用域</title>
+    <script type="text/javascript" src="../../jquery-1.7.2.min.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+    $(function(){
+        function test1(){
+            a = 30;          //全局变量。全局可用，局部赋值
+            var b = 20;     //局部变量，函数执行完成后，清除变量。
+        }
+        test1();
+//        console.log("a = " + a);
+//        console.log("b = " + b);
+
+
+        /*函数中声明的变量在整个函数中都有定义。如果函数内部有定义变量，即使在定义之前输出但会先执行后面定义语句，然后判断输出结果，所以说声明的变量在整个函数中都是起作用的。*/
+        var c = 1;
+        function test2(){
+            console.log("c = " + c);
+            var c = 2;
+        }
+        test2();
+
+        var d;
+        function test3(){
+            d = "dafdasdf";
+        }
+        test3();
+        console.log(d);
+
+        (function(c){
+            for (var i = 0; i < 3; i++ ){
+
+            }
+            console.log(i + c);
+        })(20);
+
+
+    })
+</script>
+</body>
+</html>

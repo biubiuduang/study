@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>变量 作用域 内存</title>
+</head>
+<body>
+<script type="text/javascript">
+    /**
+     * 变量
+     * */
+    console.log("1.基本类型和引用类型");
+    var num1 = 55;
+    var num2 = num1;
+
+    function fun1(num1){
+        num1 = 30;
+        return num1;
+    }
+    var result = fun1(num1);
+    console.log("基本类型num1的值改变，但是不影响num2的值改变，num2的值为"+num2);
+
+    var obj1 = new Object();
+    var obj2 = obj1;
+    obj2.name = "Hello";
+    obj1.name = "Name";
+    console.log("引用类型,obj1的key的value的改变,影响obj2的key的value : "+obj2.name);
+
+    console.log(num1);
+
+    function setName(obj){
+        obj.name = "Jacky.wang";   //参数obj
+        obj = new Object();    //局部变量obj
+        obj.name = "Hello";    // 局部变量obj
+        console.log(obj.name);
+    }
+    var person = new Object();
+    setName(person);
+    console.log(person.name);
+
+    var s = "abcdfug";
+    var b = true;
+    var i = 22;
+    var u ;
+    var n = null;
+    var o = new Object();
+    var a = new Array();
+    var d = new Date();
+
+    console.log("s的类型为:" + typeof s + " b的类型为:" + typeof b + " i的类型为: " + typeof i + " u的类型为:" + typeof u +" n的类型为:" + typeof n +" o的类型为:" + typeof o + " a的类型为:" + typeof a + " d的类型为:" + typeof  d);
+
+    console.log(a instanceof Array);
+    console.log("确定基本类型 : typeof ; 确定引用类型: instanceof ");
+
+    /**
+     * 执行环境 及 作用域
+     * */
+    var color = "blue";         //全局变量
+    function changeColor(){
+        var color ="red";       //定义局部变量
+        if(color == "blue"){
+            color = "red";
+        }else{
+            color = "yello";
+        }
+        console.log(color);   //局部变量的color 不影响全局变量color
+    }
+    changeColor();    //执行完毕 清除局部变量
+    console.log(color);  //全局变量的 color
+
+    /**
+     * 作用域
+     * */
+    var color_1 = "red";
+    function changeColor_1(){
+        var color_2 = "blue";
+        function changeColor_2(){
+            var color_3 = color_2;
+            color_2 = color_1;
+            color_1 = color_3;
+            console.log("1."+color_1 +" 2."+color_2 +" 3. "+color_3);
+        }
+        changeColor_2();
+        console.log("1."+color_1 +" 2."+color_2);  //color_3 == undefined
+    }
+    changeColor_1();
+    console.log("1."+color_1);           //color_2 == undefined
+
+    /**
+     * 延长作用域
+     * try - catch
+     * with
+     * */
+
+    console.log("with : 对于");
+    var h = {href : "11111"};
+    var href = "22222";
+    function buildH(){
+        var qs = "?debug=true";
+        with (h){
+            href = "33333";            //修改h对象的href的值!!!
+            var url = href + qs;
+        }
+        return url;
+    }
+    var resUrl = buildH();
+    console.log(resUrl);
+    console.log(href);
+    console.log(h.href);              //执行buildH()后 修改h.href的值
+
+    console.log("try..catch");
+    try{
+        throw new Error(10,"asdasdasd");
+    }catch(e){
+        console.log(e.message);
+        console.log(e.description);
+        console.log(e.number);
+        console.log(e.name);
+    }
+
+    /**
+     * 没有块级作用域
+     * */
+    if(true){
+        var color_4 = "yellow";
+    }
+    console.log(color_4);
+
+    /**
+     * 申明变量
+     * */
+    function add(){
+        num7 = 10 + 20;   //执行此函数后,全局定义 var num7;
+        return num7;
+    }
+    add();
+    console.log(num7);
+
+    var color_5 = "blue";
+    function changeColor_2(){
+        var color_5 = "red";
+        return color_5;
+    }
+    changeColor_2();   //局部变量 执行完成后 清除color_5 = "red";
+    console.log(color_5);    //"blue"
+
+
+</script>
+</body>
+</html>

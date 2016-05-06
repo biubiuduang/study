@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BOM</title>
+</head>
+<body>
+<div id="go">前进</div>
+<div id="back">后退</div>
+<script type="text/javascript">
+    var age = 29;
+    console.log(window.age);
+
+    function fun_1(){
+        console.log(this.age);
+    }
+    fun_1();
+    window.fun_1();
+    console.log(window.parseInt(666.5));
+
+    window.color = "red";
+    /**
+     * delete 可以删除window对象上定义的属性,
+     *        但是无法删除全局变量
+     * */
+    delete window.age;
+    delete window.color;
+
+    console.log(window.age);
+    console.log(window.color);
+
+    var leftPos = window.screenLeft || window.screenX;
+    var topPos = window.screenTop || window.screenY;
+    console.log(leftPos + " : " + topPos);
+
+    console.log("宽度: "+window.innerWidth + ",高度: " + window.innerHeight);
+
+//    var wroxWin = window.open("http://www.baidu.com","_blank");
+//    if(wroxWin == null){
+//        alert("浏览器屏蔽了popup");
+//    }
+
+    /**
+     * setTimeout(function(){},time);
+     * clearTimeout();
+     *  */
+
+//    var boole_1 = false;
+//    var setTime = "";
+//    function fun_2(d){
+//        var a = d;
+//        setTime = setTimeout(function(){
+//            a++;
+//            if(a==10){
+//                boole_1 = true;
+//            }
+//            console.log(a);
+//            fun_2(a);
+//        },1000);
+//
+//        if(boole_1){
+//            clearTimeout(setTime);
+//        }
+//    }
+//
+//    fun_2(0);
+//
+//    function fun_3(num,max){
+//        num++;
+//        if(num < max){
+//            setTimeout(function(){
+//                fun_3(num,max)
+//            },1000)
+//        }else{
+//            console.log("num >= max");
+//        }
+//    }
+//    fun_3(0,5);
+
+    /**
+     * alert();
+     * confirm();
+     * prompt();
+     * */
+
+//    if(confirm("are you OK?")){
+//        console.log("你点的是OK");
+//    }else{
+//        console.log("你点的是Cancel");
+//    }
+//
+//    var val_1 = prompt("请输入你的名字");
+//    if(val_1 != null) {
+//        console.log("欢迎您 : " + val_1);
+//    }
+
+
+    console.log(window.location.hash);
+    console.log(window.location.host);
+    console.log(window.location.hostname);
+    console.log(window.location.href);
+    console.log(window.location.pathname);
+    console.log(window.location.port);
+    console.log(window.location.protocol);
+    console.log(window.location.search);
+
+//    function getUrlArguments(){
+//        var arguments = (window.location.search.length > 0 ? window.location.search.substring(1) : "");
+//        args = {};
+//        items = arguments.length ? arguments.split("&") : [];
+//                item = null;
+//                name = null;
+//                value = null;
+//        len = items.length;
+//        for(var i = 0 ; i < len ; i ++){
+//            item = items[i].split("=");
+//            name = decodeURIComponent(item[0]);
+//            value = decodeURIComponent(item[1]);
+//            if(name.length){
+//                args[name] = value;
+//            }
+//        }
+//        return args;
+//    }
+//    var args = getUrlArguments();
+//    console.log(args["r"]);
+//    console.log(args["b"]);
+//    console.log(args["c"]);
+
+    function getUrlArguments(){
+        //截取除去？号的 链接参数
+        var arguments = (window.location.search.length > 0 ? window.location.search.substring(1) : "");
+        //声明一个存储各个参数的对象
+        args = {};
+        //如果截取的参数不为空 以&分离各个键值对;
+        items = (arguments.length ? arguments.split("&") : []);
+        item = null;
+        key = null;
+        value = null;
+        //键值对个数
+        len = items.length;
+        //for循环出每个键值对
+        for(var i = 0; i < len ; i++ ){
+            //获取每个键值对的 key value
+            item = items[i].split("=");
+            key = decodeURIComponent(item[0]);
+            value = decodeURIComponent(item[1]);
+            //如果key存在,把键值对存入args内
+            if(key.length){
+                args[key] = value;
+            }
+        }
+        return args;
+    }
+
+    var args = getUrlArguments();
+    //获取已知的key的value
+    console.log(args["r"]);
+    console.log(args["b"]);
+    console.log(args["c"]);
+    console.log(args.r);
+    console.log(args);
+
+    /**
+     * navigator对象
+     * */
+    console.log("navigator 对象");
+    console.log(navigator.appCodeName);  //通常都是Mozilla 即使在非Mozilla浏览器中
+    console.log(navigator.appName);
+    console.log(navigator.appVersion);
+    console.log(navigator.cookieEnabled);
+    console.log(navigator.javaEnabled());
+    console.log(navigator.userAgent);
+    var userAgent = navigator.userAgent;
+    console.log(userAgent.indexOf("Firefox"));
+    if(userAgent.indexOf("Firefox") > -1){
+        console.log("火狐浏览器");
+    }else if(userAgent.indexOf("Chrome") > -1){
+        console.log("谷歌浏览器");
+    }else{
+        console.log("......");
+    }
+
+    /**
+     * screen对象
+     * */
+    console.log("screen对象  -- 屏");
+    //浏览器所在屏幕的 屏幕宽和高
+    console.log("screen.avaiHeight : " + screen.availHeight +"px");
+    console.log("screen.avaiWidth : " + screen.availWidth +"px");
+    console.log(screen.width);
+    console.log(screen.height);
+
+    console.log("screen.colorDepth : " + screen.colorDepth);
+
+    /**
+     * history 对象
+     * */
+    var go = document.getElementById("go");
+    var back = document.getElementById("back");
+    go.onclick = function(){
+        history.go(1);
+    };
+    back.onclick = function(){
+      history.go(-1);
+    }
+</script>
+</body>
+</html>

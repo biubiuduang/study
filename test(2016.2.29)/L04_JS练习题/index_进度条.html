@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>进度条</title>
+    <script type="text/javascript" src="../../jquery-1.7.2.min.js"></script>
+    <style type="text/css">
+        li{
+            list-style-type: none;
+            height: 30px;
+            line-height: 30px;
+            width: 500px;
+        }
+        li:after{
+            content:"";
+            width: 0;
+            visibility: hidden;
+            clear:both;
+        }
+        li div{
+            float: right;
+        }
+        .progress_bar{
+            width: 100px;
+            height: 10px;
+            background-color: #fafafa;
+            border:1px solid #000000;
+            margin-top: 10px;
+            position: relative;
+        }
+        .progress_bar p{
+            height: 10px;
+            position: absolute;
+            left: 0;
+            top:50%;
+            margin-top:-5px;
+        }
+        li:nth-child(1) .progress_bar p{
+            background-color: red;
+        }
+        li:nth-child(2) .progress_bar p{
+            background-color: #00B400;
+        }
+        li:nth-child(3) .progress_bar p{
+            background-color: #00AFEE;
+        }
+        li:nth-child(4) .progress_bar p{
+            background-color: #9A4690;
+        }
+        .progress_num{
+            width: 150px;
+            height: 100%;
+            text-align: right;
+        }
+        .num{
+            margin-right: 10px;
+        }
+        .percent{
+            display: inline-block;
+            width: 80px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<input type="hidden">
+<ul class="max">
+    <li><input type="hidden" value="133"><input type="radio"  name="one">非常漂亮 <div class="progress_num"><span class="num">0</span>(<span class="percent">0.00%</span>)</div> <div class="progress_bar"><p></p></div></li>
+    <li><input type="hidden" value="14"><input type="radio" name="one">很漂亮 <div class="progress_num"><span class="num">0</span>(<span class="percent">0.00%</span>)</div> <div class="progress_bar"><p></p></div></li>
+    <li><input type="hidden" value="23"><input type="radio" name="one">一般漂亮 <div class="progress_num"><span class="num">0</span>(<span class="percent">0.00%</span>)</div> <div class="progress_bar"><p></p></div></li>
+    <li><input type="hidden" value="44"><input type="radio" name="one">不漂亮 <div class="progress_num"><span class="num">0</span>(<span class="percent">0.00%</span>)</div> <div class="progress_bar"><p></p></div></li>
+</ul>
+
+<script type="text/javascript">
+    $(function(){
+        this._init = {
+            init : function(){
+                var that = this;
+                that.reset();
+                that.onChecked();
+            },
+            reset : function(){
+                var and = 0;
+                $("ul li").each(function(){
+                    var num = parseInt($(this).find("input[type = 'hidden']").val());
+                    $(this).find(".num").text(num);
+                    and += num;
+                });
+                $("ul li").each(function(){
+                    var num = parseInt($(this).find("input[type = 'hidden']").val());
+                    var percent = (num/and*100).toFixed(2) + "%";
+                    var pro_length = parseInt(num/and*100)+"px";
+                    $(this).find(".percent").text(percent);
+                    $(this).find(".progress_bar").children("p").css({"width":pro_length});
+                });
+            },
+            onChecked : function(){
+                var that = this;
+                $("ul li input[type = 'radio']").click(function(){
+                    var newNum = parseInt($(this).siblings("input[type = 'hidden']").val()) + 1;
+                    $(this).siblings("input[type = 'hidden']").val(newNum);
+                    $("ul li input[type = 'radio']").attr("disabled","disabled");
+                    that.reset();
+                })
+            }
+        };
+
+        this._init.init();
+    })
+</script>
+</body>
+</html>

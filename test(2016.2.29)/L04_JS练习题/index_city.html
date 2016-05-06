@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>城市</title>
+    <script type="text/javascript" src="../../jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="city.js"></script>
+</head>
+<body>
+<select name="province" id="province"></select>
+<select name="city" id="city"></select>
+<select name="area" id="area"></select>
+<script type="text/javascript">
+    $(function(){
+         this._init = {
+             para : {
+                 pro : $("#province"),
+                 city : $("#city"),
+                 area : $("#area"),
+                 cityList : cityList
+             },
+            init : function(){
+                var that = this;
+                that.resetPro();
+                that.resetCity();
+                that.resetArea();
+                that.changePro();
+                that.changeCity();
+            },
+            resetPro : function(){
+                var that = this;
+                var proLen = that.para.cityList.length;
+                var proText = "";
+                for(var i = 0 ; i< proLen; i++ ){
+                    proText += "<option "+ "value = " + i + ">" + that.para.cityList[i].p + "</option>"
+                }
+                that.para.pro.html(proText);
+             },
+             resetCity : function(){
+                 var that = this;
+                 var proVal = that.para.pro.find("option:selected").val();
+                 var cityText = "";
+                 if(typeof (that.para.cityList[proVal].c) == "undefined"){
+                     that.para.city.html("").attr("disabled","disabled");
+                 }else{
+                     that.para.city.removeAttr("disabled");
+                     var cityLen = that.para.cityList[proVal].c.length;
+                     for(var i = 0 ; i < cityLen ; i ++ ){
+                         cityText += "<option "+ "value = " + i + ">" + that.para.cityList[proVal].c[i].n + "</option>"
+                     }
+                     that.para.city.html(cityText);
+                 }
+             },
+             resetArea : function(){
+                 var that = this;
+                 var proVal = that.para.pro.find("option:selected").val();
+                 var areaText = "";
+                 if(typeof (that.para.cityList[proVal].c) == "undefined"){
+                     that.para.city.html("").attr("disabled",true);
+                     that.para.area.html("").attr("disabled",true);
+                 }else{
+                     that.para.city.removeAttr("disabled");
+                     that.para.area.removeAttr("disabled");
+                     var cityVal = that.para.city.find("option:selected").val();
+                     if(typeof (that.para.cityList[proVal].c[cityVal].a) == "undefined"){
+                         that.para.area.html("").attr("disabled",true);
+                     }else{
+                         that.para.area.removeAttr("disabled");
+                         var areaLen = that.para.cityList[proVal].c[cityVal].a.length;
+
+                         for(var i = 0 ; i < areaLen ; i ++ ){
+                             areaText += "<option " + "value = " + i + ">" + that.para.cityList[proVal].c[cityVal].a[i].s + "</option>"
+                         }
+                         that.para.area.html(areaText);
+                     }
+                 }
+             },
+             changePro : function(){
+                 var that = this;
+                 that.para.pro.change(function(){
+                     that.resetCity();
+                     that.resetArea();
+                 })
+             },
+             changeCity : function(){
+                 var that = this;
+                 that.para.city.change(function(){
+                     that.resetArea();
+                 })
+             }
+        };
+
+        this._init.init();
+    });
+
+</script>
+</body>
+</html>

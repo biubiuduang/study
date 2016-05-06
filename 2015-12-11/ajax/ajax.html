@@ -6,11 +6,16 @@
     <script type="text/javascript" src="../../jquery-1.7.2.min.js" ></script>
 </head>
 <body>
-<div id="oDiv"></div>
+<div id="oText">
+    name : <input type="text" name="text" /> <br/>
+    Id   : <input type="text" name="id" />
+</div>
+<div id="oDiv" style="height: 100px;"></div>
 <input class="btn1" type="button" value="jqueryLoad" />
 <input class="btn2" type="button" value="jqueryGet" />
 <input class="btn3" type="button" value="jqueryPost" />
 <input class="btn4" type="button" value="jqueryAjax" />
+<input class="btn5" type="button" value="php" />
 
 
 <script type="text/javascript">
@@ -24,7 +29,7 @@ $().ready(function(){
      * */
 
      $(".btn1").click(function(){
-        $("#oDiv").load("load.html #hTitle","data=data",function(){
+        $("#oDiv").load("load.html #hTitle","data=1",function(){
             console.debug("加载成功....");
             console.debug(arguments);
         })
@@ -73,6 +78,7 @@ $().ready(function(){
      * */
 
     $(".btn4").click(function(){
+        var name = $.trim($("input[name = 'text']").val());
         $.ajax({
             url : "user.json",
             dataType : "json",
@@ -80,13 +86,21 @@ $().ready(function(){
                 var dataLen = data.length;
                 var content = "";
                 for(var i = 0;i<dataLen;i++){
+                    if (data[i].name == name){
+                        continue;
+                    }
                     content += "<div> ID = " + data[i].id +"姓名是："+ data[i].name +"</div>"
                 }
                 $("#oDiv").html(content);
             }
         })
-    })
+    });
 
+    $(".btn5").click(function(){
+        $.get("data.json",function(data){
+            $("#oDiv").html(data.id);
+        })
+    })
 
   });
 </script>

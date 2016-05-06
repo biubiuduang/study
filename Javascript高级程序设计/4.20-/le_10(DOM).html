@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM标题标题</title>
+</head>
+<body>
+<div id="uid" >
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+</div>
+<img src="" alt="">
+<img src="" alt="">
+<img src="" alt="">
+<img src="" alt="">
+<img src="" alt="">
+<img src="" alt="">
+<input id="uInput" type="button" value="button11111111111" />
+<input  type="button" value="button11111111111" />
+<input type="text" name="button">
+<input type="text" name="button">
+<input type="text" name="button">
+<input type="text" name="button">
+<script type="text/javascript">
+    var someNode = document.getElementById("uid");
+    var inputNode = document.getElementById("uInput");
+    console.log(Node.ELEMENT_NODE);
+    console.log(Node.ATTRIBUTE_NODE);
+    console.log(someNode.childElementCount);
+    console.log(someNode.childNodes.length);
+    console.log("节点名字:" + inputNode.nodeName + " 节点类型 : "+ inputNode.nodeType + " 节点值 : " + inputNode.nodeValue);
+    if(someNode.nodeType == 1){
+        console.log("这是一个元素节点");
+    }
+
+    someNode.appendChild(inputNode);
+    var a = someNode.removeChild(someNode.firstChild);
+    console.log(a.childNodes);
+
+    console.log(document.childNodes[0].nodeName);
+    console.log(document.URL);
+    console.log(document.head.childNodes);
+    console.log(document.domain);
+
+    var div = document.getElementsByTagName("div");
+    inputNode.value = 999999999;
+    console.log(div.length);
+
+    var txt = document.getElementsByName("button");
+    console.log(txt.length);
+    txt[0].value = "这是一个text";
+    txt[1].value = "这是一个text";
+    txt[2].value = "这是一个text";
+    txt[3].value = "这是一个text";
+
+    console.log(document.images.length);
+
+    document.write("document.write() 文档写入");
+
+    console.log("A的小写是:" + "A".toLowerCase());
+
+    var newDiv = document.createElement("div");
+    newDiv.innerText = "新添加的div";
+
+    document.body.appendChild(newDiv);
+    console.log(newDiv.lastChild.nodeValue);
+    console.log(someNode.childNodes[2].nodeValue);
+
+    var splitTxt = newDiv.firstChild.splitText(4);
+    console.log(newDiv.firstChild.nodeValue);
+    console.log(splitTxt.nodeValue);
+
+
+</script>
+</body>
+</html>

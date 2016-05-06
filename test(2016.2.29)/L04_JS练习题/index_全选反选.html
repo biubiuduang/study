@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../../jquery-1.7.2.min.js"></script>
+</head>
+<body>
+<p><input type="checkbox" class="all" >全选</p>
+<ul>
+    <li><input type="checkbox"> 1 </li>
+    <li><input type="checkbox" checked> 2 </li>
+    <li><input type="checkbox"> 3 </li>
+    <li><input type="checkbox"> 4 </li>
+    <li><input type="checkbox"> 5 </li>
+    <li><input type="checkbox"> 6 </li>
+    <li><input type="checkbox" checked> 7 </li>
+    <li><input type="checkbox"> 8 </li>
+    <li><input type="checkbox"> 9 </li>
+</ul>
+<p><input type="checkbox" class="invert">反选</p>
+<script type="text/javascript">
+    $(function(){
+        //全选
+        $(".all").click(function(){
+            if($(this).attr("checked")){
+                $("ul li input[type = 'checkbox']").each(function(){
+                    $(this).attr("checked","checked");
+                })
+            }else{
+                $("ul li input[type = 'checkbox']").each(function(){
+                    $(this).removeAttr("checked");
+                })
+            }
+        });
+
+        //反选
+        $(".invert").click(function(){
+            $("ul li input[type = 'checkbox']").each(function(){
+                if($(this).attr("checked")){
+                    $(this).removeAttr("checked");
+                }else{
+                    $(this).attr("checked","checked");
+                }
+            })
+        })
+    })
+</script>
+</body>
+</html>

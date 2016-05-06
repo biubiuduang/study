@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    (function(){
+        console.log("<\/script>");
+    })();
+
+    /**
+     *局部变量
+     **/
+    function l_1(){
+        var les3_1 = "message";   //局部变量
+    }
+    l_1();
+//    console.log(les3_1);  // ReferenceError: les3_1 is not defined
+
+    /**
+     * 全局变量
+     * 相当于 先 var les3_1；
+     * l_2()方法 为les3_1赋值！
+     * */
+
+    function l_2(){
+        les3_1 = "message";    //全局变量
+    }
+    l_2();
+    console.log(les3_1);      //输出: message;
+
+    /**
+     * 数据类型
+     * */
+    var userName = "name",                    //string
+         userId = 123456,                       //number
+         userCord = [1,2,23],                   //object
+         userObject = {n:"112",p:"ppp"},        //object
+         user,                                  //undefined
+         userFun = function(){};              //function
+
+    console.log(typeof userName);
+    console.log(typeof userId);
+    console.log(typeof userCord);
+    console.log(typeof userObject);
+    console.log(typeof user);
+    console.log(typeof true);
+    console.log(typeof userFun);
+
+    console.log( null == undefined);     //true;
+
+    /**
+     * Boolean 类型
+     * */
+    var message = function(){};
+    var messageAsBoolean = Boolean(message);
+    console.log(messageAsBoolean);
+
+    /**
+     * Number 类型
+     * */
+    var oNum = 0176;      //八进制
+    console.log(oNum);
+
+    var hNum = 0x220;
+    console.log(hNum);   //十六进制
+
+    var floatNum = 3.1415e7;
+    console.log(floatNum);
+
+    /**
+     * 0.1+0.2 != 0.3
+     * */
+    function floatFun(){
+        var a = 0.1,
+             b = 0.2;
+        if(a + b == 0.3){
+            console.log("you are right");
+        }else{
+            console.log(a + b);
+        }
+    }
+    floatFun();
+
+    /**
+     * Number()
+     * parseInt()
+     * parseFloat()
+     * */
+    var minNum = Number.MIN_VALUE;
+    var maxNum = Number.MAX_VALUE;
+    var infNum = maxNum + maxNum;
+    console.log("最小数值是:" + minNum +" / " + "最大数值是:" + maxNum);
+    console.log(infNum);                  //Infinity 正无穷
+    console.log(Number.NEGATIVE_INFINITY);
+
+    console.log(isNaN(NaN));
+
+    var toNum = 12.3645;
+    console.log(Number(toNum));
+    console.log("true : " + Number(true) + " , " + "false : " + Number(false));
+    console.log(parseInt(toNum));
+    console.log(parseFloat("0002645.231.11"));
+
+    /**
+     * string
+     * */
+    var age = 11;
+    var ageAsString = age.toString();
+    var dafdd;
+    console.log(typeof(ageAsString));
+    var found = true;
+    var foundAsString = found.toString();
+    console.log(typeof(foundAsString));
+    console.log(typeof(String(dafdd)) +" , " + typeof(dafdd));
+
+    /**
+     * object 对象
+     * */
+
+    var o = new Object({"a":"111","b":234,"c":456,"d":[1,2,3,4]});
+    console.log(typeof(o));
+    console.log(typeof (o.d[1].toString()));
+    console.log(o.b.toString(2));
+
+    /**
+     * 一元操作符
+     * */
+
+    var num1 = 2,num2 = 20;
+    var num3 = --num1 + num2;
+    console.log(num1);
+    console.log(num3);
+
+    var s1 = 2;
+    var s2 = "Z";
+    var s3 = false;
+    var s4 = 1.1;
+    var s5 = {
+        valueOf : function(){
+            return -1;
+        }
+    };
+
+
+    console.log("一元操作符");
+    s1++;
+    console.log(s1.toString());
+    console.log(s3.valueOf());
+
+    /**
+     * 位操作符
+     * */
+    console.log("位操作符");
+    var tNum = 18;
+    console.log(tNum.toString(2));    //二进制
+    console.log(tNum.toString(8));    //八进制
+
+    var num4 = 10;
+    var num5 = ~num4;
+    console.log(num5);
+
+    console.log(25&5);
+    console.log(25|5);
+    console.log(25^5);
+
+    var oldNum = 2;
+    var newNum = oldNum << 5;
+    console.log(newNum);
+    var newNum2 = newNum >> 4;
+    console.log(newNum2);
+
+    /**
+     * 布尔操作符
+     * */
+    console.log("逻辑非");
+    console.log(!false);
+    console.log(!"blue");
+    console.log(!"");
+
+    console.log("逻辑与");
+    console.log(true && false);        //false
+    console.log(false && false );     //false
+    console.log(true && true);          //true
+    console.log(false && true );     //false
+
+    console.log("逻辑或");
+
+    console.log(true || false);     //true
+    console.log(false || false );   //false
+    console.log(true || true);      //true
+    console.log(false || true );     //true
+
+    console.log("56*62="+56*62);
+    console.log("56/62="+56/62);
+    console.log("62%32="+62%32);
+    console.log("5+5=" + ( 5 + 5 ));
+    console.log("5+5=" +  (5 + "5" ));
+
+    console.log("关系操作符");
+    console.log(5 > 3);
+    console.log(true == 1);
+    console.log( mm = ((5<3) ? 5 : 3));
+
+    var num6 = (1,2,3,4,5,0);
+    console.log(num6);
+
+    var a = 10;
+    if(a>1){
+        console.log(true);
+    }else{
+        console.log(false);
+    }
+
+    var b = 1;
+    do {
+        b ++;
+    }while(b<10);
+    console.log(b);
+
+    var c = 2;
+    while (c<13){
+        c += 2;
+    }
+    console.log(c);
+
+    for(var i = 0;i < 20; i++ ){
+        var d = i;
+    }
+    console.log(d);
+    var x;
+    var mycars = new Array();
+    mycars[0] = "Saab";
+    mycars[1] = "Volvo";
+    mycars[2] = "BMW";
+
+    outermost:
+    for (x in mycars)
+    {
+        if(x == 1){
+            break outermost;
+        }
+        console.log(mycars[x]);
+    }
+
+    var e = 5;
+    switch(true){
+        case e < 0:
+            console.log("1111111");
+            break;
+        case e < 5 && e >= 0:
+            console.log("22222222");
+            break;
+        case e >= 5 && e < 10:
+            console.log("33333333");
+            break;
+        default:
+            console.log("undefined");
+    }
+
+    /**
+     * 函数 function
+     * */
+    console.log("函数 function");
+    function fun1(){
+        return 1+2;
+    }
+    console.log(fun1());
+
+    function fun2(num1,num2){
+        console.log(arguments.length);     //函数参数的length   arguments 参数
+        if(num1>num2){
+            return num1 + " > " + num2;
+        }else{
+            return 1;
+        }
+    }
+    console.log(fun2(5,9));
+    fun2(6,8);
+</script>
+</body>
+</html>

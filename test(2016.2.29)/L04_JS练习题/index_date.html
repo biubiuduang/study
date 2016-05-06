@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>时间对象</title>
+    <script type="text/javascript" src="../../jquery-1.7.2.min.js"></script>
+</head>
+<body>
+<p>1、获取当前日期。转换成年月日 时：分：秒 </p>
+<p>当前时间为：<span class="now_time"></span></p>
+<p>2、根据不同时间段，做问候语：</p>
+<p class="say">这里是问候语</p>
+<p>昨天是星期几？ 答：<span class="pro_day"></span></p>
+
+<script type="text/javascript">
+    $(function(){
+
+        //一、获取当前时间  年月日 时：分：秒
+        function newTime(){
+            var time = new Date();
+            var year = time.getFullYear();
+            var month = time.getMonth()+1;
+            var date = time.getDate();
+            var hour = time.getHours();
+            var minute = time.getMinutes();
+            var second = time.getSeconds();
+            if(second < 10){
+                second = "0"+second;
+            }
+            $(".now_time").text(year + "年" + month + "月" + date +"日" + " " + hour + "：" + minute + "：" + second);
+            setTimeout(function(){newTime()},1000);
+        }
+        newTime();
+
+        //二、根据不同时间段，做问候语
+        var time = new Date();
+        var hour = time.getHours();
+        if(hour>= 8 && hour < 12){
+            $(".say").text("早上好！欢迎登陆系统");
+        }else if(hour >=12 && hour < 14){
+            $(".say").text("中午好！该休息了");
+        }else if(hour >=14 && hour < 19){
+            $(".say").text("下午好！欢迎登陆系统");
+        }else{
+            $(".say").text("晚上好！XXXXXXXXX");
+        }
+
+        //三、获取昨天的星期
+        var year = time.getFullYear();
+        var month = time.getMonth()+1;
+        var date = time.getDate();
+        var proTime = new Date(year,month-1,date-1);
+        var day = proTime.getDay();
+        switch (day){
+            case 1:
+                $(".pro_day").text("昨天是星期一");
+                break;
+            case 2:
+                $(".pro_day").text("昨天是星期二");
+                break;
+            case 3:
+                $(".pro_day").text("昨天是星期三");
+                break;
+            case 4:
+                $(".pro_day").text("昨天是星期四");
+                break;
+            case 5:
+                $(".pro_day").text("昨天是星期五");
+                break;
+            case 6:
+                $(".pro_day").text("昨天是星期六");
+                break;
+            case 7:
+                $(".pro_day").text("昨天是星期日");
+            break;
+
+        }
+    })
+</script>
+</body>
+</html>

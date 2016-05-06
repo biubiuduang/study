@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数表达式</title>
+</head>
+<body>
+<div id="uid">111111111111111111</div>
+<script type="text/javascript">
+    function fun_1(num){
+        if(num <= 1){
+            return 1;
+        }else{
+            return num * fun_1(num-1);
+        }
+    }
+    console.log(fun_1(10));
+
+    function fun_2(){
+        var arr_1 = new Array();
+
+        for( var i = 0; i < 10 ; i ++ ){
+            arr_1[i] = function(){
+                return i;
+            }(i);
+        }
+
+        return arr_1;
+    }
+
+    console.log(fun_2());
+
+    var name = "window";
+
+    var obj_1 = {
+        name : "My Object",
+        fun_3 : function(){
+            return function(){
+                return this.name;
+            }();
+        }
+    };
+
+    console.log(obj_1.fun_3());
+
+    var obj_2 = {
+        name : "obj_2",
+        fun_4 : function(){
+            var that = this;
+            return function(){
+                return that.name;
+            }();
+        }
+    };
+
+    console.log(obj_2.fun_4());
+
+    (function(){
+        var uid = document.getElementById("uid");
+        uid.onclick = function(){
+            console.log(this.id);
+        };
+        uid = null;
+    }());
+
+    (function(){
+        for(var i = 0 ; i < 10 ; i ++ ){
+            console.log(i);
+        }
+        console.log("请确认i= " + i);   //计数 (for循环的次数)
+    }());
+
+    function fun_4(count){
+        (function(){
+            for( var i = 0 ; i < count ; i ++ ){
+                console.log(i);
+            }
+            console.log("这里是 i = " + i);
+        })();
+
+        console.log("这里是 i = " + count)
+    }
+
+    fun_4(5);
+
+    function fun_5(num_1,num_2){
+        var num = num_1 + num_2;
+        return num;
+    }
+
+    console.log(fun_5(5,23));
+
+    function fun_6(){
+        var privateValue = 10;
+        function privateFunction(){
+            return true;
+        }
+        if(this.privateFunction){
+            return privateValue+1;
+        }else{
+            return privateValue;
+        }
+    }
+    console.log(fun_6());
+
+    function person(name){
+        this.getName = function(){
+            return name;
+        };
+        this.setName = function(value){
+            name = value
+        }
+    }
+    var per = new person("哈哈");
+    console.log(per.getName());
+    per.setName("呵呵");
+    console.log(per.getName());
+
+    (function(){
+        var name = "";
+        Person = function(value){
+            name = value;
+        };
+        Person.prototype.setName = function(value){
+            name  = value;
+        };
+        Person.prototype.getName = function(){
+            return name;
+        }
+    }());
+    var per_1 = new  Person("第一");
+    console.log(per_1.getName());
+    per_1.setName("第二");
+    console.log(per_1.getName());
+
+    var singleton = {
+        name : "名字",
+        age : 29,
+        sex : "男"
+    };
+    console.log(singleton.name + " " + singleton.age);
+
+    var arr_3 = new Array();
+    arr_3.push(12);
+    arr_3.push(7);
+    arr_3.push([7,51,33]);
+    console.log(arr_3);
+
+
+</script>
+</body>
+</html>
